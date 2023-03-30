@@ -1,18 +1,33 @@
 class Renderer {
-  constructor(canvas) {
+  constructor(canvas, world) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
+    this.world = world;
+    this.scaleX = canvas.width / world.width;
+    this.scaleY = canvas.height / world.height;
   }
+
   clear() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
+
+  convertRect(x, y, dx, dy) {
+    return [
+      x * this.scaleX,
+      this.canvas.height - y * this.scaleY,
+      this.scaleX,
+      this.scaleY,
+    ];
+  }
+
   drawSnake(snake) {
     snake.getArray().forEach(([x, y]) => {
-      this.context.fillRect(x, this.canvas.height - y, 1, 1);
+      this.context.fillRect(...this.convertRect(x, y, 1, 1));
     });
   }
+
   drawFood(food) {
-    this.context.fillRect(food.x, this.canvas.height - food.y, 1, 1);
+    this.context.fillRect(...this.convertRect(food.x, food.y, 1, 1));
   }
 }
 
@@ -30,34 +45,14 @@ const world = new World();
 const snake = new Snake([world.width / 2, world.height / 2]);
 const food = new Food(20, 20);
 
+const scoreElement = document.getElementById("score");
+
 const canvas = createCanvas({
   elementId: "main",
-  width: world.width,
-  height: world.height,
+  width: world.width * 10,
+  height: world.height * 10,
 });
-const renderer = new Renderer(canvas);
-
-function tick(world, snake, food) {
-  if (!snake.isAlive) return;
-
-  snake.advanceHead();
-
-  if (world.border === "WRAP") {
-    snake.wrap(world);
-  } else if (world.border === "WALL" && snake.isOutsideBorder(world)) {
-    snake.isAlive = false;
-  }
-
-  if (snake.isTouchingSelf()) {
-    snake.isAlive = false;
-  }
-
-  if (snake.atFood(food)) {
-    food.move(world, snake);
-  } else {
-    snake.advanceTail();
-  }
-}
+const renderer = new Renderer(canvas, world);
 
 addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") {
@@ -72,6 +67,7 @@ const intervalId = setInterval(() => {
   renderer.clear();
   renderer.drawSnake(snake);
   renderer.drawFood(food);
+  scoreElement.innerHTML = `${snake.getArray().length - 5}`;
 
   if (!snake.isAlive) {
     clearInterval(intervalId);
