@@ -15,8 +15,8 @@ class Renderer {
     return [
       x * this.scaleX,
       this.canvas.height - y * this.scaleY,
-      this.scaleX,
-      this.scaleY,
+      this.scaleX * dx,
+      -this.scaleY * dy,
     ];
   }
 
