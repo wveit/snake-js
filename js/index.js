@@ -49,7 +49,10 @@ function createCanvas({ elementId, width, height }) {
 ////////////////////////////////////////////////////////////////////////////
 
 const world = new World();
-const snake = new Snake([world.width / 2, world.height / 2]);
+const snake = new Snake([
+  Math.round(world.width / 2),
+  Math.round(world.height / 2),
+]);
 const food = new Food(20, 20);
 
 const scoreElement = document.getElementById("score");
