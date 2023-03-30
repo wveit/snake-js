@@ -22,8 +22,8 @@ class Food {
   }
 
   move(world, snake) {
-    const newX = Math.round(Math.random() * world.width);
-    const newY = Math.round(Math.random() * world.height);
+    const newX = Math.round(Math.random() * (world.width - 1));
+    const newY = Math.round(Math.random() * (world.height - 1));
     this.setPosition(newX, newY);
   }
 }
