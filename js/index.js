@@ -80,4 +80,4 @@ const intervalId = setInterval(() => {
     clearInterval(intervalId);
     alert("Game Over");
   }
-}, 300);
+}, 100);
