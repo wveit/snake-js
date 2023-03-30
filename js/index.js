@@ -21,12 +21,19 @@ class Renderer {
   }
 
   drawSnake(snake) {
-    snake.getArray().forEach(([x, y]) => {
+    const head = snake.getHead();
+    this.context.fillStyle = "#00FF00";
+    this.context.fillRect(...this.convertRect(head[0], head[1], 1, 1));
+
+    const rest = snake.getArray().slice(1);
+    this.context.fillStyle = "#000000";
+    rest.forEach(([x, y]) => {
       this.context.fillRect(...this.convertRect(x, y, 1, 1));
     });
   }
 
   drawFood(food) {
+    this.context.fillStyle = "#FFa500";
     this.context.fillRect(...this.convertRect(food.x, food.y, 1, 1));
   }
 }
@@ -49,8 +56,8 @@ const scoreElement = document.getElementById("score");
 
 const canvas = createCanvas({
   elementId: "main",
-  width: world.width * 10,
-  height: world.height * 10,
+  width: world.width * 20,
+  height: world.height * 20,
 });
 const renderer = new Renderer(canvas, world);
 
