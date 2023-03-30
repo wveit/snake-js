@@ -1,7 +1,14 @@
 class World {
   width = 50;
   height = 25;
-  border = "WALL"; // NONE | WRAP | WALL
+  border = "WRAP"; // NONE | WRAP | WALL
+
+  constructor(opts) {
+    opts = opts || {};
+    this.width = opts.width || this.width;
+    this.height = opts.height || this.height;
+    this.border = opts.border || this.border;
+  }
 }
 
 class Food {
