@@ -99,3 +99,25 @@ class Snake {
     return JSON.stringify(this.array);
   }
 }
+
+function tick(world, snake, food) {
+  if (!snake.isAlive) return;
+
+  snake.advanceHead();
+
+  if (world.border === "WRAP") {
+    snake.wrap(world);
+  } else if (world.border === "WALL" && snake.isOutsideBorder(world)) {
+    snake.isAlive = false;
+  }
+
+  if (snake.isTouchingSelf()) {
+    snake.isAlive = false;
+  }
+
+  if (snake.atFood(food)) {
+    food.move(world, snake);
+  } else {
+    snake.advanceTail();
+  }
+}
