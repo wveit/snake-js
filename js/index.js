@@ -72,6 +72,18 @@ addEventListener("keydown", (event) => {
   }
 });
 
+canvas.addEventListener("click", (event) => {
+  const el = event.target.getBoundingClientRect();
+  const x = event.clientX - Math.round(el.x);
+  const y = event.clientY - Math.round(el.y);
+
+  if (x < el.width / 2) {
+    snake.turnLeft();
+  } else {
+    snake.turnRight();
+  }
+});
+
 const intervalId = setInterval(() => {
   tick(world, snake, food);
   renderer.clear();
