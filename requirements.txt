@@ -1,24 +1,24 @@
 # Write a snake game
-
+☐ 
 ## First Iteration
-Dimensions of world are 100 x 50
-Snake starts with head in the middle, length 5, facing right
-Game ticks start automatically on page load
-Game ticks will occur every 1s
-For every game tick, the snake will move forward one unit in the current direction
- - the head moves forward in snake direction
- - the tail follows, causing the snake to keep the same length
-The user can change the snake direction with the left and right keyboard buttons
-One food will be randomly placed on the board
- - on a position that does not overlap with the snake
- - the food should be placed at least 2 units away from snake (so that its visible)
-If the snake head touches the food item:
+✅ Dimensions of world are 50 x 25
+✅ Snake starts with head in the middle, length 5, facing right
+✅ Game ticks start automatically on page load
+✅ Game ticks will occur every 0.1s
+✅ For every game tick, the snake will move forward one unit in the current direction
+ - ✅ the head moves forward in snake direction
+ - ✅ the tail follows, causing the snake to keep the same length
+✅ The user can change the snake direction with the left and right keyboard buttons
+✅ One food will be randomly placed on the board
+ - ✅ on a position that does not overlap with the snake
+ - ⬜ the food should be placed at least 2 units away from snake (so that its visible)
+✅ If the snake head touches the food item:
  - the snake will grow by one
  - the food will be replaced at a new random location, at least 2 units from snake
-In the first iteration, it is ok for the snake to move off the game world. It can return to the game world by turning around and advancing
-If the snake touches itself (i.e. the head is on the same location as one of the other body locations), the game is over.
-Initially game will be reset by reloading.
-Don't worry about fancy graphics initially
+✅ In the first iteration, it is ok for the snake to move off the game world. It can return to the game world by turning around and advancing
+✅ If the snake touches itself (i.e. the head is on the same location as one of the other body locations), the game is over.
+✅ Initially game will be reset by reloading.
+✅ Don't worry about fancy graphics initially
  - just make it so that it is possible to see the game status
  - try to separate graphics and game code so that game code does not need to be touched when graphics are updated
 
@@ -28,7 +28,7 @@ Game speed configurable
 The snake will wrap around the game world (configurable)
 The game will be over if it touches world border (configurable)
 Add sound effects for snake advancing, turning, eating, dying, etc
-Improve the graphics
+🚧 Improve the graphics
 Add touch controls so that can be played on mobile device
 Add game controls for starting/restarting and changing configurables
 
